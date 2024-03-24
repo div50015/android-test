@@ -70,3 +70,4 @@ def mobile_management():
         browser.quit()
 
     utils.allure.attach_bstack_video(session_id)
+
