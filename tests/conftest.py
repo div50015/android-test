@@ -40,6 +40,3 @@ def mobile_management():
 
 
 
-
-
-
