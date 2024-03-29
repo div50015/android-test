@@ -12,10 +12,13 @@ from appium import webdriver
 @pytest.fixture(scope='function', autouse=True)
 def mobile_management():
     options = UiAutomator2Options().load_capabilities({
+        "platformName": "android",
         "platformVersion": "10.0",
         "deviceName": "android",
-        "app": "/opt/selenoid/app.apk",
-        # "app": "/opt/selenoid/app.apk:ro",
+        "app": "/opt/selenoid/app-alpha-universal-release.apk:ro",
+        "enableLog": "true",
+        "enableVNC": "true",
+        "enableVideo": "true",
     })
 
     # browser.config.driver_remote_url = 'http://hub.browserstack.com/wd/hub'
@@ -23,7 +26,7 @@ def mobile_management():
     with allure.step('init app session'):
         browser.config.driver = webdriver.Remote("http://87.117.11.241:4444/wd/hub", options=options)
 
-    browser.config.timeout = float(os.getenv('timeout', '30.0'))
+    browser.config.timeout = float(os.getenv('timeout', '10.0'))
 
     browser.config._wait_decorator = support._logging.wait_with(
         context=allure_commons._allure.StepContext
